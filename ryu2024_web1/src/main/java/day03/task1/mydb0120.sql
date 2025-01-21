@@ -7,3 +7,5 @@ create table visit(
     age int ,
     constraint primary key(num)
 );
+
+select * from visit;

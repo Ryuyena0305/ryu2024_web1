@@ -49,6 +49,7 @@ const waitingUpdate = (num)=>{
 	let newphoneNum = prompt('new phoneNum');
 	let newpNum = prompt('new peopleNum');
 	let dataObj = {num:num,phoneNum : newphoneNum,pNum:newpNum}
+	
 	const option = {
 		method : 'PUT',
 		headers : {'Content-Type' : 'application/json'},
