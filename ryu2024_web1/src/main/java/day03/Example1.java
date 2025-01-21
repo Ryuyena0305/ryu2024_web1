@@ -40,5 +40,5 @@ public class Example1 extends HttpServlet {
 		System.out.println( "[HTTP *DELETE 방식으로 요청이 왔어요.]");
 		String data1 = req.getParameter( "data1" ); System.out.println( "data1 : " + data1 );
 		int data2 = Integer.parseInt( req.getParameter( "data2" ) ); System.out.println( "data2 : " + data2 );
-	} // f end 
-} // class end 
+	} // f e
+} // c e
