@@ -29,20 +29,22 @@ public class BoardDao {
 
 	public boolean write(BoardDto boardDto) {
 		try {
-			String sql = "insert into board(btitle,bcontent,bwriter,bpw) values(?,?,?,?)";
+			String sql = "insert into board( btitle , bcontent , bwriter, bpw ) values( ? , ? , ? , ? )";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, boardDto.getBtitle());
 			ps.setString(2, boardDto.getBcontent());
 			ps.setString(3, boardDto.getBwriter());
 			ps.setString(4, boardDto.getBpw());
 			int count = ps.executeUpdate();
-			if(count==1)return true;
+			if (count == 1)
+				return true;
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return false;
-//{"btitle":"안녕하세요","bcontent":"내용입니다","bwriter":"bear","bpw":"0305"}
 	}
+
+//{"btitle":"안녕하세요","bcontent":"내용입니다","bwriter":"bear","bpw":"0305"}
 
 	public ArrayList<BoardDto> findAll() {
 		ArrayList<BoardDto> list = new ArrayList<BoardDto>();
@@ -62,26 +64,66 @@ public class BoardDao {
 			}
 		} catch (Exception e) {
 			System.out.println(e);}
-			return list;
+		return list;
 	}
+
 //{"btitle":"안녕하세요","bcontent":"내용입니다"}
 	public boolean update(BoardDto boardDto) {
 		try {
 			String sql = "update board set btitle=?,bcontent=? where bno =? and bpw=? ";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
-			ps.setString(1,boardDto.getBtitle());
-			ps.setString(2,boardDto.getBcontent());
-			ps.setInt(3,boardDto.getBno());
+
+			ps.setString(1, boardDto.getBtitle());
+			ps.setString(2, boardDto.getBcontent());
+			ps.setInt(3, boardDto.getBno());
 			ps.setString(4, boardDto.getBpw());
 			int count = ps.executeUpdate();
-			if(count==1) {
+			if (count == 1) {
 				return true;
 			}
-		}catch(Exception e) {System.out.println(e);}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		return false;
-		
+
 	}
-	
-	
+
+	public boolean delete(int bno) {
+		try {
+			String sql = "delete from board where num=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, bno);
+			int count = ps.executeUpdate();
+			if (count == 1)
+				return true;
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+
+	public BoardDto findById(int bno) {
+		try {
+			String sql = "select * from board where bno =?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, bno);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				BoardDto boardDto = new BoardDto();
+				boardDto.setBno(rs.getInt("bno"));
+				boardDto.setBtitle(rs.getString("btitle"));
+				boardDto.setBcontent(rs.getString("bcontent"));
+				boardDto.setBwriter(rs.getString("bwriter"));
+				boardDto.setBview(rs.getInt("bview"));
+				boardDto.setBdate(rs.getString("bdate"));
+				return boardDto;
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+
 }

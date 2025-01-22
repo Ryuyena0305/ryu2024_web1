@@ -18,18 +18,14 @@
 				</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td>1</td><td><a href="view.jsp?bno=1">안녕하세요</a></td><td>2025-01-22 11:05:09</td><td>정준재</td><td>1</td>
-			</tr>
-			<tr>
-				<td>2</td><td><a href="view.jsp?bno=2">안녕하세요2</a></td><td>2025-01-22 11:05:10</td><td>오원석</td><td>3</td>
-			</tr>
+			
 			</tbody>
 		</table>
 		
 	</div>
 	
 
-
+<script src = "board.js"></script>
+<jsp:include page="/day05/footer.jsp" />
 </body>
 </html>

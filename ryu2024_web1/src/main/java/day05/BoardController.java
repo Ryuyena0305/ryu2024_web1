@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import day03.task4.WaitingDao;
-import day03.task4.WaitingDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -47,7 +44,10 @@ public class BoardController extends HttpServlet{
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("okokook");
+		int bno = Integer.parseInt(req.getParameter("bno"));
+		boolean result = BoardDao.getInstance().delete(bno);
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
 	}
 
 }

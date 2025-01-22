@@ -14,9 +14,10 @@
 		작성자 : <input class ="writerInput"/>
 		비밀번호 : <input class ="pwInput"/><br/>
 		제목 :  <input class = "titleInput"/><br/>
-		내용 : <textarea rows="10" cols="60"></textarea>
+		내용 : <textarea class = "contentInput" rows="10" cols="60"></textarea><br/>
 		<button onclick ="boardWrite()">등록 </button>
 	</div>
+	<script src="write.js"></script>
 	<jsp:include page="/day05/footer.jsp"></jsp:include>
 
 </body>
