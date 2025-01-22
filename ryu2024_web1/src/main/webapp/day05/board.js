@@ -9,7 +9,7 @@ const boardFindAll = () => {
 			data.forEach(board => {
 				html += `<tr>
 							<td>${board.bno}</td>
-							<td><a href="view.jsp?bno=${board.bno}">${board.btitle}</a></td>
+							<td><a href="/view.jsp?bno=${board.bno}">${board.btitle}</a></td>
 							<td>${board.bdate}</td>
 							<td>${board.bwriter}</td>
 							<td>${board.bview}</td>
