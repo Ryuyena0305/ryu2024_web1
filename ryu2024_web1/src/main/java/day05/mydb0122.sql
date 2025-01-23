@@ -30,6 +30,8 @@ create table board(
 -- insert into board(btitle,bcontent,bwriter,bpw) values('안녕하세요2','내용입니다2','wsws','0423');
 -- insert into board(btitle,bcontent,bwriter,bpw) values('안녕하세요3','내용입니다3','yjyj','1113');
 
-select * from board;
+select * from board ;
 
-update board set btitle="수정제목",bcontent="수정안녕"where bno =1&bpw="0305";
+
+update board set btitle="수정제목",bcontent="수정안녕"where bno =1 and bpw="1234";
+delete from board where bno=6;

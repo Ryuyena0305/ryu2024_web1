@@ -15,6 +15,7 @@ public class BoardController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("POST OK");
 		ObjectMapper mapper = new ObjectMapper();
 		BoardDto boardDto = mapper.readValue(req.getReader(), BoardDto.class);
 		boolean result = BoardDao.getInstance().write(boardDto);
@@ -25,6 +26,7 @@ public class BoardController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("GET ALL OK");
 		ArrayList<BoardDto> result = BoardDao.getInstance().findAll();
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writeValueAsString(result);
@@ -35,6 +37,7 @@ public class BoardController extends HttpServlet{
 	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("PUT OK");
 		ObjectMapper mapper =  new ObjectMapper();
 		BoardDto boardDto = mapper.readValue(req.getReader(), BoardDto.class);
 		boolean result = BoardDao.getInstance().update(boardDto);
@@ -44,6 +47,7 @@ public class BoardController extends HttpServlet{
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("DELETE OK");
 		int bno = Integer.parseInt(req.getParameter("bno"));
 		boolean result = BoardDao.getInstance().delete(bno);
 		resp.setContentType("application/json");
