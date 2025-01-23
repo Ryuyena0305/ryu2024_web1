@@ -1,5 +1,5 @@
 const boardFindAll = () => {
-	let tbody = document.querySelector('tbody')
+	let tbody = document.querySelector('tbody');
 	let html = '';
 	
 	const option = { method: 'GET' }

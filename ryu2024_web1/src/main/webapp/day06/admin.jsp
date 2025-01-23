@@ -73,17 +73,10 @@ table, th, td {
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>143구1234</td>
-				<td>A1</td>
-				<td>00:00:00</td>
-				<td>00:00:01</td>
-				<td>true</td>
-				<td><button>수정</button>
-					<button>삭제</button></td>
+			
 		</tbody>
 	</table>
-
+	<script src ="admin.js"></script>
+	
 </body>
 </html>
