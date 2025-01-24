@@ -46,10 +46,8 @@ public class ParkingAdminDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, cno);
 			int count  = ps.executeUpdate();
-			if(count == 1)
-				return true;
-		}catch(Exception e) {
-			System.out.println(e);}
+			if(count == 1)return true;
+		}catch(Exception e) {System.out.println(e);}
 		return false;
 	}
 }

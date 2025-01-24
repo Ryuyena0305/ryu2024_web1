@@ -39,12 +39,12 @@ public class Example3 {
 		set.add("정준재"); System.out.println(set);
 		
 		//[3] TreeSet 인스턴스 생성
-		Set<String> set2 = new TreeSet<String>();
+		TreeSet <String> set2 = new TreeSet<String>();
 		set2.add("정준재");
 		set2.add("오원석");
 		set2.add("조병현");
-		System.out.println(set2);
-		System.out.println(set2.descendingSet());
+		System.out.println( set2 ); // 자동으로 오름차순 정렬 
+		System.out.println( set2.descendingSet() ); // 내림차순 정렬 
 	}
 	
 	
