@@ -1,7 +1,9 @@
 package day07;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 public class Example2 {
 	public static void main(String[] args) {
@@ -63,6 +65,13 @@ public class Example2 {
 		}
 	//3. 클래스 들
 		//3가지 주요 클래스들은 사용법(메소드) 동일하다.
+	ArrayList<String> list1 = new ArrayList<String>();
+	Vector<String> list2 = new Vector<String>();		//멀티스레드에서 주로 사용됨
+	LinkedList<String>list3 = new LinkedList<String>();//요소가 중간 삽입/삭제 용이하다.
+		//여러 클래스들의 인스턴스를 다루기 위해서는 주로 인터페이스 타입 사용한다.
+	List<String>list4 = new ArrayList<String>();
+	List<String>list5 = new Vector<String>();
+	List<String>list6 = new LinkedList<String>();
 	
 
 }
