@@ -40,6 +40,7 @@ public class Example4 {
 				//1. 일반 for문주로 사용하지 않음
 				//2. 향상된 for문
 		for(String key : map.keySet()) {System.out.println(map.get(key));}
+		
 				//3. forEach()
 		map.keySet().forEach((key)->{
 			System.out.println(map.get(key));
