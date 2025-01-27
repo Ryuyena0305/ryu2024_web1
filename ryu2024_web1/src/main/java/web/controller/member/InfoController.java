@@ -2,6 +2,8 @@ package web.controller.member;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,18 +16,64 @@ import web.model.dto.MemberDto;
 @WebServlet("/member/info")
 public class InfoController extends HttpServlet{
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MemberDto result =null;
-		
-		HttpSession session = req.getSession();
-		session.getAttribute("loginMno");
-		Object object = session.getAttribute("loginMno");
-		
-		if(object != null) {
-			int loginMno = (Integer)object;
-			result = MemberDao.getInstance().myInfo(loginMno);
-		}
+    // [ 내(로그인된) 정보 조회 ]
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            // 1.[HTTP 요청의 header body 자료(JSON)를 자바(DTO)로 받는다.]
+            // 2.[ 데이터 유효성검사 ]
+            // 3.[ DAO 에게 데이터 전달 하고 응답 받기 ]
+            MemberDto result = null;
+                    // (1) 현재 로그인된 회원의 번호 : 세션객체내 존재. 속성명 : loginMno
+            HttpSession session = req.getSession(); // 세션객체 가져오기.
+            Object object = session.getAttribute("loginMno"); // 세션객체내 지정한 속성 값 가져오기.
+                    // (2) 만약에 세션객체내 지정한 속성값이 존재하면 로그인회원번호를 타입변환한다. 
+            if( object != null ) {
+                    int loginMno = (Integer)object; 
+                    // (3) 현재 로그인된 회원번호를 매개변수로 전달한다.
+                    result = MemberDao.getInstance().myInfo(loginMno);
+            }
+            // 4.[ 자료(DTO/자바)타입을 JS(JSON)타입으로 변환한다.]
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonResult = mapper.writeValueAsString( result );
+            // 5.[ HTTP 응답의 header body 로 application/json 으로 응답/반환하기]
+            resp.setContentType("application/json");
+            resp.getWriter().print( jsonResult );
+    } // f end 
+    
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	boolean result = false;
+    	HttpSession session = req.getSession();
+    	Object object = session.getAttribute("loginMno");
+    	if(object!=null) {
+    		int loginMno = (Integer)object;
+    		result = MemberDao.getInstance().delete(loginMno);
+    		if(result ==true) {
+    			session.removeAttribute("loginMno");
+    		}
+    	}
+    	resp.setContentType("application/json");
+    	resp.getWriter().print(result);
+    			
+    }
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	ObjectMapper mapper = new ObjectMapper();
+    	MemberDto memberDto =mapper.readValue(req.getReader(), MemberDto.class);
+    	System.out.println(memberDto);
+    	
+    	boolean result = false;
+    	HttpSession session = req.getSession();
+    	Object object = session.getAttribute("loginMno");
+    	if(object != null) {
+    		int loginMno = (Integer)object;
+    		memberDto.setMno(loginMno);
+    		result = MemberDao.getInstance().update(memberDto);
+    		
+    	}
+    	resp.setContentType("application/json");
+    	resp.getWriter().print(result);
+    }
 
-	}
+
 }
