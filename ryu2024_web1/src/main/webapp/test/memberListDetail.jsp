@@ -96,24 +96,24 @@ input[type="text"] {
 			<ul class="listItem">
 				<li><a href="/ryu2024_web1/test/memberListSignUP.jsp">회원등록</a></li>
 				<li><a href="/ryu2024_web1/test/memberList.jsp">회원목록조회/수정</a></li>
-				<li><a href="/ryu2024_web1/test/memberSaleQuery.jsp">회원매출조회</a></li>
-				<li><a href="/ryu2024_web1/test/main.jsp">홈으로</a></li>
+				<li><a href="/ryu2024_web1/test/memberSalesQuery.jsp">회원매출조회</a></li>
+				<li><a href="/ryu2024_web1/test/index.jsp">홈으로</a></li>
 			</ul>
 		</div>
 	</header>
 	<div class="main">
 		<h3>홈쇼핑 회원정보 수정</h3>
 		<table>
-			<tr><th>회원번호(자동발생)</th><th><input type="text" readonly/></th></tr>
-			<tr><th>회원성명</th><th><input type="text"/></th></tr>
-			<tr><th>회원전화</th><th><input type="text"/></th></tr>
-			<tr><th>회원주소</th><th><input type="text"/></th></tr>
-			<tr><th>가입일자</th><th><input type="text"/></th></tr>
-			<tr><th>고객등급[A:VIP B:일반 C:직원]</th><th><input type="text"/></th></tr>
-			<tr><th>도서코드</th><th><input type="text"/></th></tr>
+			<tr><th>회원번호(자동발생)</th><th><input class ="updateMno" disabled/></th></tr>
+			<tr><th>회원성명</th><th><input class ="updateMname"/></th></tr>
+			<tr><th>회원전화</th><th><input class ="updateMphone"/></th></tr>
+			<tr><th>회원주소</th><th><input class ="updateMaddress"/></th></tr>
+			<tr><th>가입일자</th><th><input class ="updateMdate"/></th></tr>
+			<tr><th>고객등급[A:VIP B:일반 C:직원]</th><th><input class ="updateMgrade"/></th></tr>
+			<tr><th>도시코드</th><th><input class ="updateMcode"/></th></tr>
 			<tr>
-				<th><input class="updateBtn" type="button" value="수정" onclick=""></th>
-				<th><input class="deleteBtn" type="button" value="삭제" onclick=""></th>
+				<th><input class="updateBtn" type="button" value="수정" onclick="memberUpdate()"></th>
+				<th><input class="deleteBtn" type="button" value="조회" ></th>
 			</tr>
 		</table>
 	</div>

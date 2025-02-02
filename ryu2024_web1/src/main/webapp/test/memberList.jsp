@@ -96,8 +96,8 @@ input[type="text"] {
 			<ul class="listItem">
 				<li><a href="/ryu2024_web1/test/memberListSignUP.jsp">회원등록</a></li>
 				<li><a href="/ryu2024_web1/test/memberList.jsp">회원목록조회/수정</a></li>
-				<li><a href="/ryu2024_web1/test/memberSaleQuery.jsp">회원매출조회</a></li>
-				<li><a href="/ryu2024_web1/test/main.jsp">홈으로</a></li>
+				<li><a href="/ryu2024_web1/test/memberSalesQuery.jsp">회원매출조회</a></li>
+				<li><a href="/ryu2024_web1/test/index.jsp">홈으로</a></li>
 			</ul>
 		</div>
 	</header>
