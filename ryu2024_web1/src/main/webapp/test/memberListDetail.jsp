@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
+<title>.회원정보 수정</title>
 <style>
 * {
 	margin: 0;

@@ -34,6 +34,7 @@ a, li, ul {
 	height: 40px;
 	justify-content: center;
 	align-items: center;
+	s
 }
 
 #list {
@@ -75,6 +76,8 @@ th, td {
 	text-align: center;
 	border: 1px solid #000;
 }
+table{
+width : 900px}
 
 .updateBtn, .deleteBtn {
 	padding: 8px 16px;

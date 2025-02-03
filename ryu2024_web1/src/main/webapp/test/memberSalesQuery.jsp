@@ -110,6 +110,6 @@ th, td {
 	<footer> HRDKOREA Copyright2016 All rights reserved. Human
 		Resources Development Service of Korea </footer>
 
-	<script src="memberSalesQuery.js"></script>
+	<script src="/memberSalesQuery.js"></script>
 </body>
 </html>

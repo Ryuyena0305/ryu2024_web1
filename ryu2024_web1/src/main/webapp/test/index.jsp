@@ -41,6 +41,6 @@
 		Resources Development Service of Korea </footer>
 
 
-	<script src="main.js"></script>
+	<script src="index.js"></script>
 </body>
 </html>
