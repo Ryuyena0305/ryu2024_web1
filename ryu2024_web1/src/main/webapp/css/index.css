@@ -10,3 +10,15 @@
     font-style: normal;
 }
 *{font-family : 'omyu_pretty'}
+
+
+/*header member profile*/
+.header_profile{
+	width : 60px;
+	height : 60px;
+	border-radius:40px;
+	border : 1px solid #e8e8e8;
+	padding : 1px;
+	object-fit : contain
+	
+}
