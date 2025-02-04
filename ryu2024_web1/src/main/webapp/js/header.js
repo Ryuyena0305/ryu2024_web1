@@ -17,6 +17,7 @@ const getLoginInfo = () => {
 			} else {
 				console.log('로그인상태');
 				html += `<li class="nav-item"><a class="nav-link" href="#"><img class="header_profile" src="/ryu2024_web1/upload/${data.mimg}" /> ${data.mid} 님</a></li>
+				<li class="nav-item"> <a class="nav-link" href="/ryu2024_web1/member/info.jsp" onclick="getmyInfo()">마이페이지</a> </li>
 				<li class="nav-item"> <a class="nav-link" href="#" onclick="onLogOut()">로그아웃</a> </li>`
 			}
 			loginmenu.innerHTML = html;
