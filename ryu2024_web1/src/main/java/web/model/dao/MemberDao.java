@@ -3,10 +3,12 @@ package web.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import web.model.dto.MemberDto;
+import web.model.dto.PointDto;
 
 
 
@@ -118,6 +120,26 @@ public class MemberDao extends Dao{
                 }catch (SQLException e) {                System.out.println( e ); }
                 return false; // 수정 실패 했을때.
         } // f end
+        
+        public ArrayList< PointDto > getPointLog( int loginMno ) {
+            ArrayList< PointDto > list = new ArrayList<PointDto>();
+            try {
+                    String sql ="select * from pointlog where mno = ? "; // [1] SQL 작성한다.
+                    PreparedStatement ps = conn.prepareStatement(sql); // [2] DB와 연동된 곳에 SQL 기재한다.
+                    ps.setInt(  1 , loginMno); // [*] 기재된 SQL 에 매개변수 값 대입한다.
+                    ResultSet rs = ps.executeQuery(); // [3] 기재된 SQL 실행하고 결과를 받는다.
+                    while( rs.next() ) {
+                            PointDto pointDto = new PointDto();
+                            pointDto.setPno( rs.getInt("pno") );
+                            pointDto.setPcontent( rs.getString("pocontent") );
+                            pointDto.setPcount( rs.getInt("pcount") );
+                            pointDto.setPdate( rs.getString("pdate") );
+                            pointDto.setMno( rs.getInt("mno") );
+                            list.add(pointDto);
+                    }
+            }catch(SQLException e ) { System.out.println(e);}
+            return list; // 조회된 회원정보가 없을때. null 반환한다
+    } // f end 
         
 } // class end 
 

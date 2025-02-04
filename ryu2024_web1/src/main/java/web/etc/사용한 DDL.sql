@@ -14,6 +14,7 @@ create table member(
     mname varchar(20) not null ,
     mphone varchar(13) not null unique , 
     mdate datetime default now() , 
+    pointCount int default 0,
   mimg varchar(255) default 'default.jpg',
     constraint primary key( mno )
 ); # table end 
@@ -23,5 +24,23 @@ insert into member ( mid , mpwd , mname , mphone ) values( 'asd123' , 'b123456' 
 insert into member ( mid , mpwd , mname , mphone ) values( 'zxc123' , 'c123456' , '신동엽' ,  '010-5555-5555' );
 insert into member ( mid , mpwd , mname , mphone ) values( 'vbn123' , 'd123456' , '서장훈' ,  '010-6666-6666' );
 insert into member ( mid , mpwd , mname , mphone ) values( 'rty123' , 'e123456' , '하하'   ,  '010-7777-7777' );
+
+create table point(
+pno int unsigned auto_increment,
+pcontent varchar(30) not null,
+pcount int not null,
+pdate datetime default now(),
+mno int unsigned,
+constraint foreign key (mno) references member(mno),
+constraint primary key( pno )
+);
+
+insert into point (pcontent, pcount, pdate, mno) values
+('상품 구매 적립', 1000, '2025-02-01 10:30:00', 1),
+('회원가입 축하 포인트', 500, '2025-02-01 12:00:00', 2),
+('설날 이벤트 포인트', 2000, '2025-02-01 14:00:00', 3);
+
+
 select * from member;
+select * from point; 
 

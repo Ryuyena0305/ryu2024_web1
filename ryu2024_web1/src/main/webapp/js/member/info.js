@@ -30,7 +30,7 @@ const onDelete = () =>{
 	if(result == false) return;
 	//*fetch
 	const option ={method : 'DELETE'}
-	fetch('ryu2024_web1/member/info',option)
+	fetch('/ryu2024_web1/member/info',option)
 		.then(r => r.json())
 		.then(data => {
 			if(data == true){
