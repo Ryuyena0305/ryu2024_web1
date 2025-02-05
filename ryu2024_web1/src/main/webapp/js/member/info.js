@@ -68,10 +68,10 @@ const getPointLog = ( ) => {
                                 
                                 data.forEach(  (point) =>{
                                         html += `<tr>
-                                                     <th> ${ point.pono} </th> 
-                                                     <th> ${ point.pocomment } </th>
-                                                     <th> ${ point.pocount } </th> 
-                                                     <th> ${ point.podate } </th>
+                                                     <th> ${ point.pno} </th> 
+                                                     <th> ${ point.pcontent } </th>
+                                                     <th> ${ point.pcount } </th> 
+                                                     <th> ${ point.pdate } </th>
                                                         </tr>`
                                 })
                                 

@@ -71,7 +71,7 @@ public class SignUpController extends HttpServlet {
             memberDto.setMimg(filename); 
             System.out.println( memberDto );
             
-            // 12.
+            // 12.s
             int mno = MemberDao.getInstance().signup(memberDto);
             boolean result = false;
             if( mno > 0 ) {

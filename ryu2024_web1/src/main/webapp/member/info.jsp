@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MY PAGE</title>
         <link href="/ryu2024_web1/css/info.css" rel="stylesheet">
 </head>
 <body>

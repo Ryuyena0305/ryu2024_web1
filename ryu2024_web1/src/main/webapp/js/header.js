@@ -22,7 +22,6 @@ const getLoginInfo = () => {
 				<img class="header_profile" src="/ryu2024_web1/upload/${ data.mimg }" /> ${ data.mid } 님 </a>
 				<ul class="dropdown-menu">
 				<li class="nav-item"> <a class="nav-link" href="#"> ${ data.mpoint} POINT </a> </li>
-				<li class="nav-item"> <a class="nav-link" href="/ryu2024_web1/member/point.jsp">포인트 조회</a> </li>
 					<li class="nav-item"> <a class="nav-link" href="/ryu2024_web1/member/info.jsp">마이페이지</a> </li>
 					<li class="nav-item"> <a class="nav-link" href="#" onclick="onLogOut()">로그아웃</a></li>
 					</ul>

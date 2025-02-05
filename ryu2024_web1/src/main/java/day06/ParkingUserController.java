@@ -22,16 +22,22 @@ public class ParkingUserController extends HttpServlet{
 		
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
-
 	}
 	
-	
+	// 개별조회
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("33");
+		int carNum = Integer.parseInt(req.getParameter("carNum"));
+		ParkingDto parkingDto = ParkingUserDao.getInstance().printByid(carNum);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonString = mapper.writeValueAsString(parkingDto);
+		resp.setContentType("application/json");
+		resp.getWriter().print(jsonString);
 	}
 	
-	// 출차(주차상태 변경) 
+	
+	
+	// 출차(주차상태 변경) / 결제
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
@@ -44,3 +50,5 @@ public class ParkingUserController extends HttpServlet{
 		
 	}
 }
+
+

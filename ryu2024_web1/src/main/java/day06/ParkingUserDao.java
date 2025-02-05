@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
@@ -35,16 +36,50 @@ public class ParkingUserDao {
 	}
 	
 	
+	// 조회
+	public ParkingDto printByid(int carNum) {
+		try {
+			String sql = "select * from parking where carNum = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, carNum);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				ParkingDto parkingDto = new ParkingDto();
+				parkingDto.setCno(rs.getInt("cno"));
+				parkingDto.setCarNum(rs.getString("carNum"));
+				parkingDto.setCarLo(rs.getInt("carLo"));
+				parkingDto.setInCar(rs.getString("inCar"));
+				parkingDto.setOutCar(rs.getString("outCar"));
+				return parkingDto;
+			}
+		}catch(SQLException e) {System.out.println(e);}
+		return null;
+	}
 	
-	// 출차
-	public boolean outCar(ParkingDto parkingDto) {
+	// 조회 / 출차시간 표시
+	public boolean serchCar(ParkingDto parkingDto) {
 		try {
 			 LocalDateTime now = LocalDateTime.now();
 		     Timestamp timestamp = Timestamp.valueOf(now);
-			String sql = "update parking set state = false, outCar = ? where cno = ?";
+			String sql = "update parking set outCar = ? where carNum = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setTimestamp(1, timestamp);
-			ps.setInt(2, parkingDto.getCno());
+			ps.setString(2, parkingDto.getCarNum());
+			int c = ps.executeUpdate();
+			if(c == 1) {return true;}
+		}catch(SQLException e) {System.out.println(e);}
+		return false;
+	}
+	
+	
+	
+	// 결제/출차
+	public boolean outCar(ParkingDto parkingDto) {
+		try {
+			String sql = "update parking set state = ? where carNum = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setBoolean(1, parkingDto.isState());
+			ps.setString(2, parkingDto.getCarNum());
 			int c = ps.executeUpdate();
 			if(c == 1) {return true;}
 		}catch(SQLException e) {System.out.println(e);}
@@ -54,3 +89,6 @@ public class ParkingUserDao {
 	
 	
 }
+
+
+
