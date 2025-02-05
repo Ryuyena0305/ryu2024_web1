@@ -17,38 +17,27 @@ import web.model.dao.PointDao;
 import web.model.dto.MemberDto;
 import web.model.dto.PointDto;
 
-@WebServlet("/member/point")
+@WebServlet("/point")
 public class PointController extends HttpServlet {
+       
+        
+        @Override
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                System.out.println(" /point get ok ");
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MemberDto result1 = null;
-        ArrayList<PointDto> result2 = new ArrayList<>();
-        
-        HttpSession session = req.getSession();
-        Object object = session.getAttribute("loginMno");
-        
-        if (object != null) {
-            int loginMno = (Integer) object;
-            // 로그인된 회원 정보를 가져옴
-            result1 = MemberDao.getInstance().myInfo(loginMno);
-            
-            // 해당 회원의 포인트 정보도 가져옴
-            result2 = PointDao.getInstance().myPoint(loginMno);  // 포인트 정보는 로그인된 회원 번호를 통해 가져옴
-        }
-
-        // 응답에 포함할 데이터를 묶어서 전달
-        ObjectMapper mapper = new ObjectMapper();
-        
-        resp.setContentType("application/json");
-        
-        // 응답으로 반환할 데이터에 MemberDto와 PointDto를 바로 매핑
-        if (result1 != null && result2 != null) {
-            // 바로 직렬화하여 반환
-            mapper.writeValue(resp.getWriter(), result1);  // 회원 정보
-            mapper.writeValue(resp.getWriter(), result2);  // 포인트 정보
-        }
-    }
+                Object result = null;
+                
+                Object object = req.getSession().getAttribute("loginMno");
+                if( object != null ) {
+                        int loginMno = (Integer)object;
+                        result = MemberDao.getInstance().getPointLog( loginMno );
+                }
+                ObjectMapper mapper = new ObjectMapper();
+                String jsonResult = mapper.writeValueAsString( result );
+                
+                resp.setContentType("application/json");
+                resp.getWriter().print( jsonResult );
+                
+        } // f end 
 }
-
 

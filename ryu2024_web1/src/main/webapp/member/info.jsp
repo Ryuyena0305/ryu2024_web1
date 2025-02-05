@@ -36,6 +36,18 @@
                 <button class="w-100 btn btn-lg btn-primary" type="button" onclick="onDelete()"> 회원 탈퇴 </button>
               </form>
             </div>
+             <div class="col-md-10 mx-auto col-lg-5">
+                    <table class="table">
+                            <thead>
+                                    <tr>
+                                            <th> # </th> <th> 내역 </th> <th> 수량 </th> <th> 변경일 </th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                    
+                            </tbody>
+                    </table>
+            </div>
           </div>
         </div>
           <script src="/ryu2024_web1/js/member/info.js"></script>
