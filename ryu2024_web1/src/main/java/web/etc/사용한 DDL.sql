@@ -26,24 +26,24 @@ insert into member ( mid , mpwd , mname , mphone ) values( 'rty123' , 'e123456' 
 select * from member;
 
 # [2] 포인트 테이블 생성 
-create table pointlog(
-        pono int unsigned auto_increment , 
-    pocomment varchar(255) not null , 
-    pocount int ,
-    podate datetime default now() ,
+create table point(
+        pno int unsigned auto_increment , 
+    pcontent varchar(255) not null , 
+    pcount int ,
+    pdate datetime default now() ,
     mno int unsigned , 
-    constraint primary key( pono ),
+    constraint primary key( pno ),
     constraint foreign key( mno ) references member( mno ) on update cascade on delete cascade 
 );
 
 # [*] 회원테이블 샘플 레코드 삽입
-insert into pointlog ( pocomment , pocount , mno ) values( '회원가입축하' , 100 , 1  );
-insert into pointlog ( pocomment , pocount , mno ) values( '로그인' , 1 , 1  );
-insert into pointlog ( pocomment , pocount , mno ) values( '아이템구매' , -50 , 1  );
-insert into pointlog ( pocomment , pocount , mno ) values( '포인트구매' , 2000 , 1  );
-insert into pointlog ( pocomment , pocount , mno ) values( '아이템구매' , 1000 , 1  );
+insert into point( pcontent , pcount , mno ) values( '회원가입축하' , 100 , 1  );
+insert into point( pcontent , pcount , mno )  values( '로그인' , 1 , 1  );
+insert into point( pcontent , pcount , mno )  values( '아이템구매' , -50 , 1  );
+insert into point ( pcontent , pcount , mno )  values( '포인트구매' , 2000 , 1  );
+insert into point ( pcontent , pcount , mno )  values( '아이템구매' , 1000 , 1  );
 
-select * from pointlog;
+select * from point;
 
 -- 카테고리 테이블[ 카테고리번호 , 카테고리 이름 ( 공지사항 , 커뮤니티 , QnA , 노하우 등등 ) ]
 create table category(
