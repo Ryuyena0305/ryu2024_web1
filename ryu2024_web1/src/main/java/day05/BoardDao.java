@@ -116,9 +116,7 @@ public class BoardDao {
 			if (count == 1)
 				return true;
 
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
+		} catch (SQLException e) {System.out.println(e);}
 		return false;
 	}
 

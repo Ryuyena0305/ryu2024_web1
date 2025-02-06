@@ -48,6 +48,7 @@ public class BoardController extends HttpServlet{
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("DELETE OK");
+		//HTTP queryString 매개변수를 가져오기, URL?bno=1, 
 		int bno = Integer.parseInt(req.getParameter("bno"));
 		boolean result = BoardDao.getInstance().delete(bno);
 		resp.setContentType("application/json");
