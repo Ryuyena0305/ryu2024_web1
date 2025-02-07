@@ -47,11 +47,13 @@ public class BoardController extends HttpServlet{
 		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		//[1] 요청 매개변수 x
-		ArrayList<BoardDto> result = BoardDao.getInstance().findAll();
+		int cno = Integer.parseInt(req.getParameter("cno"));
 		//[2] DAO에게 전체 게시물 요청하고 결과 받기
-		ObjectMapper mapper = new ObjectMapper();
+		ArrayList<BoardDto> result = BoardDao.getInstance().findAll(cno);
 		//[3] 받은 전체 게시물을 JSON 형식의 문자열로 변환하기
+		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writeValueAsString(result);
 		//[4] http response
 		resp.setContentType("application/json");

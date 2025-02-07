@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("board/reply")
+@WebServlet("/board/reply")
 public class BoardReplyController extends HttpServlet{
 
 	@Override

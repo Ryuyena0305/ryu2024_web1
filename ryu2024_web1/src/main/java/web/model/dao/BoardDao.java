@@ -35,11 +35,15 @@ public class BoardDao extends Dao {
 		return false;
 	}
 
-	public ArrayList<BoardDto> findAll(){
+	public ArrayList<BoardDto> findAll(int cno){
 		ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		try {
-			String sql = "select * from board inner join member on board.mno=member.mno order by board.bno desc";
+			//String sql = "select * from board inner join member on board.mno=member.mno order by board.bno desc";
+			String sql = "select * from board inner join member on board.mno=member.mno "
+					+ "where cno =? order by board.bno asc ";
+
 			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, cno);
 			ResultSet rs =ps.executeQuery();
 			while(rs.next()) {
 				BoardDto boardDto = new BoardDto();
