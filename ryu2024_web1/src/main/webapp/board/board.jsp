@@ -28,6 +28,12 @@
                         </tbody>
                 </table>
                 
+                <nav aria-label="Page navigation example">
+  <ul class="pagination pagebtnbox">
+    
+  </ul>
+</nav>
+                
         </div>
 
         <script src="/ryu2024_web1/js/board/board.js" type="text/javascript"></script>

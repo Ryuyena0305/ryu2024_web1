@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import web.model.dao.BoardDao;
 import web.model.dto.BoardDto;
+import web.model.dto.PageDto;
 
 @WebServlet("/board")
 public class BoardController extends HttpServlet{
@@ -50,11 +51,51 @@ public class BoardController extends HttpServlet{
 		
 		//[1] 요청 매개변수 x
 		int cno = Integer.parseInt(req.getParameter("cno"));
+		int page = Integer.parseInt(req.getParameter("page"));
+		
+		// 페이징 철리에 필요한 자료를 준비
+		//1. 1페이지 당 출력할 게시물 수 
+		int display  = 5; //페이지 1개당 게시물 5개씩 출력할 예정
+		//2. 페이지당 조회할 게시물의 시작번호
+		int startRow = (page-1)*display;
+			//게시물이 10개 존재한다고 가정 : 0 1 2 3 4 5 6 7 8 9 
+			//1페이지 시작번호 0번 , 2페이지 시작번호 5번 
+		//3.게시물의 전체 페이지수 구하기
+		int totalSize = BoardDao.getInstance().getTotalSize(cno);
+		//4. 특정 카테고리 게시물의 전체 게시물 수 구하기
+		int totalPage = 0;
+		if(totalSize%display==0) {
+			//전체 게시물 수 나누기 페이지당 게시물 수 했을 때 나머지가 없으면
+			totalPage = totalSize/display;
+		}else {
+			totalPage = totalSize/display+1;
+		}
+		//5. 페이지당 버튼 수
+		int btnSize = 5;
+		//6. 시작버튼 번호 구하기
+		int startBtn = ((page-1)/btnSize) * btnSize+1;
+		//7. 끝번호 번호 구하기
+		int endBtn = startBtn +(btnSize-1);
+		// * 만약에 끝번호가 전체 페이지수 보다 커지면 안되므로 끝번호가 전체페이지수 보다 커지면
+		if(endBtn>totalPage) endBtn = totalPage;
+		
+		
 		//[2] DAO에게 전체 게시물 요청하고 결과 받기
-		ArrayList<BoardDto> result = BoardDao.getInstance().findAll(cno);
+		ArrayList<BoardDto> result = BoardDao.getInstance().findAll(cno,startRow,display);
+		
+		//8. PageDto 객체 만들기
+		PageDto pageDto = new PageDto();
+		pageDto.setTotalCount(totalSize); //조회된 전체 게시물 수
+		pageDto.setPage(page); //현재페이지
+		pageDto.setTotalpage(totalPage);//전체페이지수
+		pageDto.setStartbtn(startBtn);//페이징 버튼 시작번호
+		pageDto.setEndbtn(endBtn);//페이징 버튼 끝 번호
+		pageDto.setData(result);
+		
+		
 		//[3] 받은 전체 게시물을 JSON 형식의 문자열로 변환하기
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(result);
+		String jsonResult = mapper.writeValueAsString(pageDto);
 		//[4] http response
 		resp.setContentType("application/json");
 		resp.getWriter().print(jsonResult);
