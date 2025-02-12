@@ -14,20 +14,25 @@
 	<div id="carouselExample" class="carousel slide">
 		<!-- 이미지 본문들 -->
 		<div class="carousel-inner">
+
 		
-			<div class="mainimg carousel-item active " >
-				<img src="/ryu2024_web1/img/main1.jpg" class="d-block w-100 h-50" alt="...">
+			<div class="mainimg carousel-item active ">
+				<img src="/ryu2024_web1/img/main1.jpg" class="d-block w-100 h-50"
+					alt="...">
 			</div>
-			
-			<div class="mainimg carousel-item " >
-				<img src="/ryu2024_web1/img/main2.jpg" class="d-block w-100 h-50" alt="...">
+
+			<div class="mainimg carousel-item ">
+				<img src="/ryu2024_web1/img/main2.jpg" class="d-block w-100 h-50"
+					alt="...">
 			</div>
-			
-			<div class="mainimg carousel-item " >
-				<img src="/ryu2024_web1/img/main3.jpg" class="d-block w-100 h-50" alt="...">
+
+			<div class="mainimg carousel-item ">
+				<img src="/ryu2024_web1/img/main3.jpg" class="d-block w-100 h-50"
+					alt="...">
 			</div>
-			<div class="mainimg carousel-item" >
-				<img src="/ryu2024_web1/img/main4.jpg" class="d-block w-100 h-50" alt="...">
+			<div class="mainimg carousel-item">
+				<img src="/ryu2024_web1/img/main4.jpg" class="d-block w-100 h-50"
+					alt="...">
 			</div>
 		</div>
 		<button class="carousel-control-prev" type="button"

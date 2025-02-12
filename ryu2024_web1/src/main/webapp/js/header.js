@@ -35,7 +35,7 @@ getLoginInfo();
 
 const onLogOut = () => {
 	const option = { method: 'DELETE' }
-	fetch('/ryu2024/member/login', option)
+	fetch('/ryu2024_web1/member/login', option)
 		.then(r => r.json())
 		.then(data => {
 			if (data == true) {
@@ -45,3 +45,23 @@ const onLogOut = () => {
 		})
 		.catch(e => { console.log(e); })
 }
+
+
+// [3]
+const alarmSocket = new WebSocket('ws://localhost:8080/ryu2024_web1/alarmsocket');
+alarmSocket.onmessage = ( msgEvent ) => {
+        console.log( msgEvent.data ); // 알람 메시지를 console.log() 띄우기
+        // 부트스트랩을 이용한 '부트스트랩의 토스트'
+        // 1. 어디에 
+        const alarmbox = document.querySelector('.alarmbox')
+        // 2. 무엇을 
+        let html = `<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                                  <div class="toast-header">
+                                    <strong class="me-auto">${ msgEvent.data }</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                  </div>
+                                </div>`
+        // 3. 출력 
+        alarmbox.innerHTML = html
+        
+} // f end

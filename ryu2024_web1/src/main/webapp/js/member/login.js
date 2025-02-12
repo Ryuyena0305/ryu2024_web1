@@ -21,7 +21,9 @@ const onLogin = ( ) => {
         fetch( '/ryu2024_web1/member/login' , option )
                 .then( response => response.json() )
                 .then( data => { 
-                        if( data > 0 ){ alert('로그인성공'); location.href="../index.jsp"; }
+                        if( data > 0 ){ alert('로그인성공')
+							 location.href="../index.jsp"; 
+						   alarmSocket.send( `${mid}님 접속했어요.`)}
                         else{ alert('로그인실패'); }
                 })
                 .catch( error => { console.log(error )})
