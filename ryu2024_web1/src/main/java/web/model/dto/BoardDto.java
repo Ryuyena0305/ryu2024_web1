@@ -22,5 +22,4 @@ public class BoardDto {
     //+HTML에 출력할 때 작성자의 회원번호가 아닌 작성자 ID
     private String mid;
     private String cname;
-   
 }
